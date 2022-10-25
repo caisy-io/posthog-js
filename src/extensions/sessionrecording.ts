@@ -186,8 +186,8 @@ export class SessionRecording {
                     $window_id: this.windowId,
                 }
 
-                this.instance._captureMetrics.incr('rrweb-record')
-                this.instance._captureMetrics.incr(`rrweb-record-${event.type}`)
+                this.instance?._captureMetrics?.incr('rrweb-record')
+                this.instance?._captureMetrics?.incr(`rrweb-record-${event.type}`)
 
                 if (this.emit) {
                     this._captureSnapshot(properties)

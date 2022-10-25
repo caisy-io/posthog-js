@@ -486,7 +486,7 @@ export class PostHog {
         }
         if (this.get_config('_capture_metrics')) {
             this._requestQueue.updateUnloadMetrics()
-            this.capture('$capture_metrics', this._captureMetrics.metrics)
+            this._captureMetrics?.metrics && this.capture('$capture_metrics', this._captureMetrics.metrics)
         }
         this._requestQueue.unload()
         this._retryQueue.unload()
@@ -691,9 +691,9 @@ export class PostHog {
             return
         }
 
-        this._captureMetrics.incr('capture')
+        this._captureMetrics?.incr('capture')
         if (event_name === '$snapshot') {
-            this._captureMetrics.incr('snapshot')
+            this._captureMetrics?.incr('snapshot')
         }
 
         options = options || __NOOPTIONS
@@ -972,7 +972,7 @@ export class PostHog {
             return
         }
 
-        this._captureMetrics.incr('identify')
+        this._captureMetrics?.incr('identify')
 
         const previous_distinct_id = this.get_distinct_id()
         this.register({ $user_id: new_distinct_id })
@@ -1045,7 +1045,7 @@ export class PostHog {
             return
         }
 
-        this._captureMetrics.incr('group')
+        this._captureMetrics?.incr('group')
 
         const existingGroups = this.getGroups()
 
